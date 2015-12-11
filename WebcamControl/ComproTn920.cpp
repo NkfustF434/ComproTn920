@@ -20,6 +20,7 @@ void ComproTn920::ImageStream()
 	while (g_bThreadStart)
 	{
 		g_clsCapture.read(g_clsImage);
+		Sleep(1);
 	}
 }
 
