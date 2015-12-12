@@ -10,7 +10,7 @@
 size_t write_data(char* ptr, size_t size, size_t nmemb, void* userdata) {
 	/*((std::stringstream*)userdata)->write(ptr, size * nmemb);
 	return size * nmemb;*/
-	
+
 	size_t segsize = size * nmemb;
 	return segsize;
 }
@@ -27,15 +27,16 @@ void ComproTn920::ImageStream()
 ComproTn920::ComproTn920(std::string strIP)
 {
 	g_strIP = strIP;
-	g_clsCapture = cv::VideoCapture(RTSP+g_strIP+STREAM);
+	g_clsCapture = cv::VideoCapture(RTSP + g_strIP + STREAM);
 	g_bThreadStart = true;
-	g_clsStreamThread = std::thread(&ComproTn920::ImageStream,this);
+	g_clsStreamThread = std::thread(&ComproTn920::ImageStream, this);
 }
 
 ComproTn920::~ComproTn920()
 {
 	g_bThreadStart = false;
 	g_clsStreamThread.join();
+	Disconnect();
 }
 
 /* Private Methods */
